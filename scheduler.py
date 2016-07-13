@@ -1,3 +1,7 @@
+'''
+Created on 2016-07-13
+@author: Zheng Gong
+'''
 import random
 from send_sms import SendSMS
 
