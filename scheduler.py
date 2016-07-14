@@ -1,15 +1,15 @@
 '''
-
 Created on 2016-07-13
 @author: Zheng Gong
 '''
 import random
 from send_sms import SendSMS
+from send_email import SendEmail
 
 def run(sendSMS, message, num_of_weeks=3):
     receiver_dict = sendSMS.receiverDict
     config = {}
-    for receiver in receiver_dict:
+    for receiver in receiver_dict.keys():
         file_name = receiver+'.conf'
         try:
             with open(file_name, 'rb') as file:
@@ -44,12 +44,19 @@ def run(sendSMS, message, num_of_weeks=3):
     if target_person:
         print target_person
         message = message % target_person
-        sendSMS.send_sms_to_many([target_person], message)
+        # do not send sms (they need to pay for receiving sms)
+        if target_person != 'Glenn':
+            sendSMS.send_sms_to_many([target_person], message)
+        sendEmail.send_email_to_many([target_person], message)
 
 
 if __name__=='__main__':
     #,'Xinkai':'3479331959'
-    receiver_dict = {'Zheng':'4123541459','Xinkai':'4123541459'}
+    # {'Glenn':'6174298743'}
+    # 'Yuge':'6174355509'
+    # {'Zheng':('4123541459','gongzhenggz@gmail.com')}
+    receiver_dict = {'Yuge':('6174355509','yugexiao2014@gmail.com')}
     message = "Hey %s: it's your turn to attend Scrum of Scrum today!"
     sendSMS = SendSMS(receiver_dict)
+    sendEmail = SendEmail(receiver_dict)
     run(sendSMS, message, 3)

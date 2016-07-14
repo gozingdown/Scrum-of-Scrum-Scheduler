@@ -12,20 +12,21 @@ import requests
 from optparse import OptionParser
 
 SUCCESS=200
-
+DEFAULT_RECEIVER_DICT={'Zheng':('4123541459','gongzhenggz@gmail.com')}
 class SendSMS:
-	def __init__(self, receiverDict={'Zheng':'4123541459'}):
+	def __init__(self, receiverDict=DEFAULT_RECEIVER_DICT):
 		self.receiverDict = receiverDict
 
-	def send_sms_to_many(self,receivers, message):
-		print "Sending SMS to %s" % (str(receivers))
-		map(lambda x: self.send_sms(self.receiverDict[x], message), receivers)
+	def send_sms_to_many(self,receivers_names, message):
+		print "Sending SMS to %s" % ",".join(receivers_names)
+		map(lambda x: self.send_sms(x, message), receivers_names)
 
-	def send_sms(self,receiver, message):
+	def send_sms(self,receiver_name, message):
 		try:
-			print "Sending sms to %s" % receiver
+			num = self.receiverDict[receiver_name][0]
+			print "Sending sms to %s" % num
 			url = 'http://textbelt.com/text'
-			data = {'number':receiver,'message':message} 
+			data = {'number':num,'message':message} 
 			r = requests.post(url, data=data)
 			if r.status_code == SUCCESS:
 				print "SMS successfully sent!"
@@ -36,7 +37,7 @@ class SendSMS:
 
 
 if __name__=='__main__':
-	receiver_list = []
+	receiver_names = []
 	receivers_str = ""
 	message = "Notice: please attend Scrum of Scrum today!"
 	parser = OptionParser()
@@ -50,7 +51,7 @@ if __name__=='__main__':
 	if options.message:
 		message = options.message
 
-	receiver_list = receivers_str.split(',')
-	receiver_list = map(lambda x: x.title(), receiver_list)
-	sendSMS = SendSMS({'Zheng':'4123541459'})
-	sendSMS.send_sms_to_many(receiver_list, message)
+	receiver_names = receivers_str.split(',')
+	receiver_names = map(lambda x: x.title(), receiver_names)
+	sendSMS = SendSMS(DEFAULT_RECEIVER_DICT)
+	sendSMS.send_sms_to_many(receiver_names, message)
