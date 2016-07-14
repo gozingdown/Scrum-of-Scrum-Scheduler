@@ -11,7 +11,7 @@ import random
 from send_sms import SendSMS
 from send_email import SendEmail
 
-def run(sendSMS, message, num_of_weeks=3):
+def run(sendSMS, message, num_of_weeks=3, sms_exclusion_list=[]):
     '''
     How to pick the right person for Scrum of Scrum?
     The solution is a little tricky here, because I just don't want to use db and
@@ -63,7 +63,7 @@ def run(sendSMS, message, num_of_weeks=3):
         message = message % target_person
         sendEmail.send_email_to_many([target_person], message)
         # do not send sms to certain people (they need to pay for receiving sms)
-        if target_person != 'Glenn':
+        if target_person not in sms_exclusion_list:
             sendSMS.send_sms_to_many([target_person], message)
         
 
@@ -75,6 +75,7 @@ if __name__=='__main__':
     receiver_dict = {'Zheng':('4123541459','gongzhenggz@gmail.com')}
     message = "Hey %s: it's your turn to attend Scrum of Scrum today!"
     num_of_weeks = 3
+    sms_exclusion_list=['Glenn']
     sendSMS = SendSMS(receiver_dict)
     sendEmail = SendEmail(receiver_dict)
-    run(sendSMS, message, num_of_weeks)
+    run(sendSMS, message, num_of_weeks, sms_exclusion_list)
