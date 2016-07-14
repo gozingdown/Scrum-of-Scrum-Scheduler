@@ -13,12 +13,16 @@ from send_email import SendEmail
 
 def run(sendSMS, message, num_of_weeks=3):
     '''
-    Make each receiver a config file, which contains only a number, indicating
-    current count of weeks. 
+    How to pick the right person for Scrum of Scrum?
+    The solution is a little tricky here, because I just don't want to use db and
+    also save time:
+
+    Make each person a config file, which contains only a number, indicating
+    current count of weeks for him/her.
     Assume we have 3-week rotation:
-    1. when all are 3 => all done => reset every count to 0 to restart
-    2. when all are 0(or some are 3 else are 0) => select a random name from names with 0 count and increase count by 1
-    3. where there is a non-zero count => continue using that guy and increase count by 1
+    1. when all counts are 3 => all done => reset every count to 0 to restart
+    2. when all counts are 0(or some are 3 else are 0) => select a random name from names with 0 count and increase count by 1
+    3. when there is a non-zero count => continue using that guy and increase count by 1
     '''
     receiver_dict = sendSMS.receiverDict
     config = {}
