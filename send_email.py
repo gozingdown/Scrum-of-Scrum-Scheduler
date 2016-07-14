@@ -5,6 +5,9 @@ How to set up MailGun API to send email
 3. Set up DNS records in DoDaddy-Domain manager, add new records required by Mailgun.com (two TXT records and on CNAME record)
 4. Verify in mailgun.com that new domain is active
 5. use the api key and new domain to send rest calls
+
+Created on 2016-07-13
+@author: Zheng Gong
 '''
 
 import requests
