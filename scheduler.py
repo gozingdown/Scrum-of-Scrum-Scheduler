@@ -74,6 +74,7 @@ if __name__=='__main__':
     # {'Zheng':('4123541459','gongzhenggz@gmail.com')}
     receiver_dict = {'Zheng':('4123541459','gongzhenggz@gmail.com')}
     message = "Hey %s: it's your turn to attend Scrum of Scrum today!"
+    num_of_weeks = 3
     sendSMS = SendSMS(receiver_dict)
     sendEmail = SendEmail(receiver_dict)
-    run(sendSMS, message, 3)
+    run(sendSMS, message, num_of_weeks)
