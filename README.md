@@ -2,14 +2,15 @@
 
 This is a scheduler to pick and remind people of Scrum of Scrums. 
 
-It will send out an email and a SMS(you can opt off this) to the person on duty.
+It will send out an email and a SMS(you can opt-out this) to the person on duty.
 
-You can configure the number of weeks in rotation and add new users to it, it's complete fair game! Currently all configuration are hard-coded
+You can configure the number of weeks in rotation and add new users to it, it's complete fair game! Currently all configuration are hard-coded because I don't want
+to spend more time on it!
 
 Read below for more important information:
 
 ==============================================================================
-                    How to set up MailGun API to send email?
+How to set up MailGun API to send email?
 ==============================================================================
 1. register a Domain on GoDaddy.com
 2. register on Mailgun.com and add the domain you just bought
@@ -19,13 +20,13 @@ Read below for more important information:
 
 
 ==============================================================================
-                            How to send SMS via API?
+How to send SMS via API?
 ==============================================================================
 Take a look at http://textbelt.com
 
 
 ==============================================================================
-                How to pick the right person for Scrum of Scrum?
+How to pick the right person for Scrum of Scrum?
 ==============================================================================
 The solution is a little tricky here, because I just don't want to use db and
 also save time:
