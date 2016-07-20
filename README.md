@@ -17,7 +17,7 @@ How to use it?
 1. Note: we use name as unique identifier for a person
 2. create name.config file with only character 0 in the file
 
-    e.g. in command line:  echo 0 >> Zheng.conf
+    e.g. in command line:  echo 0 > Zheng.conf
 
     Create as many as you like
     
