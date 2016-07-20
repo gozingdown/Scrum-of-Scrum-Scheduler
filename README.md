@@ -6,7 +6,7 @@ It will send out an email and a SMS(you can opt-out this) to the person on duty 
 
 You can configure the number of weeks in rotation and add new users to it, it's complete fair game!
 
-Currently all configuration are hard-coded and code quality is bad because I don't want to spend more time on it!
+Currently all configuration are hard-coded because I don't want to spend more time on it!
 
 Read below for more important information:
 
