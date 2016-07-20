@@ -32,7 +32,7 @@ class SendEmail:
                 auth=("api", "key-dacf79d108c1c1b7a9dcbf6b0f46b8fa"),
                 data={"from": "Reminder <postmaster@zhengnetwork.com>",
                       "to": "%s" % self.receiverDict[receiver_name][1],
-                      "subject": "Hello %s" % receiver_name,
+                      "subject": "Scrum of Scrum Reminder",
                       "text": "%s" % message})
             if r.status_code == SUCCESS:
                 print "Email successfully sent!"
@@ -40,3 +40,7 @@ class SendEmail:
                 print "Sending email failed! Full response from api call:\n%s" % str(r.__dict__)
         except Exception as e:
             print "Something is wrong:\n" + str(e)
+
+    def send_email_to_all(self, message):
+	print "Send email to all!"
+	self.send_email_to_many(self.receiverDict.keys(), message)

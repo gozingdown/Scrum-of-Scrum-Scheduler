@@ -65,15 +65,18 @@ def run(sendSMS, message, num_of_weeks=3, sms_exclusion_list=[]):
         # do not send sms to certain people (they need to pay for receiving sms)
         if target_person not in sms_exclusion_list:
             sendSMS.send_sms_to_many([target_person], message)
+        sendEmail.send_email_to_all("Hi team,\nI'm glad to announce that it's %s's turn today for Scrum of Scrum.\n\n%s has %s more weeks to go before rotation(currently we have a %s-week rotation plan)!" 
+            % (target_person,target_person, str(num_of_weeks-int(config[target_person])), str(num_of_weeks)))
         
 
 if __name__=='__main__':
     #,'Xinkai':'3479331959'
     # {'Glenn':'6174298743'}
     # 'Yuge':'6174355509'
+    # {'Glenn':('6174298743','gdecesare@vistaprint.com')}
     # {'Zheng':('4123541459','gongzhenggz@gmail.com')}
-    receiver_dict = {'Zheng':('4123541459','gongzhenggz@gmail.com')}
-    message = "Hey %s: it's your turn to attend Scrum of Scrum today!"
+    receiver_dict = {'Zheng':('4123541459','gongzhenggz@gmail.com'),'Glenn':('4123541459','zgong@vistaprint.com')}
+    message = "Hey %s,\nIt's your turn to attend Scrum of Scrum today!"
     num_of_weeks = 3
     sms_exclusion_list=['Glenn']
     sendSMS = SendSMS(receiver_dict)
